@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<ui:composition template="WEB-INF/templates/template.xhtml">
+ <ui:param name="uyedurum" value="#{loginBean.useronline}" />
+            <ui:define name="content">
+             <div>
+                <c:choose>
+                    <c:when test="${uyedurum}">
+                          zaten giris yapmissiniz
+                    </c:when>
+                    <c:otherwise>
+                             <table>
+		<tr>
+                	<td>    
+                                <h:form>
+                                    <h:panelGrid columns="2">
+                                <h:column>E-mail :</h:column>
+                                <h:column><h:inputText id="email" value="#{loginBean.email}" >
+                                        <f:ajax execute="email" render="email_yaz"></f:ajax>
+                                    </h:inputText>
+                                    <h:outputText id="email_yaz" value="#{loginBean.email}"></h:outputText> 
+                                </h:column>
+                                <h:column>Şifre :</h:column>
+                                <h:column><h:inputText value="#{loginBean.password}" /> </h:column>
+                                <h:column></h:column>
+                                <h:column>
+                                    <h:commandButton value="Giriş Yap" action="#{loginBean.checkUser()}" >
+                                </h:commandButton>
+                                </h:column>
+                                </h:panelGrid>
+                                 </h:form>
+			</td>
+		</tr>
+	</table>
+                    </c:otherwise>
+                </c:choose>
+
+</div>
+            </ui:define>
+</ui:composition>
+</html>

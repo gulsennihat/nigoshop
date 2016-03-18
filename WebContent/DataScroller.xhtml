@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/templates/template.xhtml">
+	
+	<ui:define name="content">
+	    <h:form>
+			<p:dataScroller value="#{dataScrollerBean.isletimSistemleri}" scrollHeight="300" var="isletimSistemleriObjesi" chunkSize="3" mode="inline">
+				<h:panelGrid columns="3">
+					<p:graphicImage style="width:200px;" name="#{isletimSistemleriObjesi.resimAdi}" library="images"></p:graphicImage>
+					<h:outputText value="#{isletimSistemleriObjesi.isim}"></h:outputText>
+					<h:outputText value="#{isletimSistemleriObjesi.aciklama}"></h:outputText>
+				</h:panelGrid>
+			</p:dataScroller>
+			
+			<br/>
+			<br/>
+			
+			<p:dataScroller value="#{dataScrollerBean.isletimSistemleri}"  var="isletimSistemleriObjesi" chunkSize="3">
+				<f:facet name="loader">
+					<p:commandButton type="button" value="Daha Fazla" icon="ui-icon-circle-triangle-s"></p:commandButton>
+				</f:facet>
+				
+				<h:panelGrid columns="3">
+					<p:graphicImage style="width:200px;" name="#{isletimSistemleriObjesi.resimAdi}" library="images"></p:graphicImage>
+					<h:outputText value="#{isletimSistemleriObjesi.isim}"></h:outputText>
+					<h:outputText value="#{isletimSistemleriObjesi.aciklama}"></h:outputText>
+				</h:panelGrid>
+			</p:dataScroller>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

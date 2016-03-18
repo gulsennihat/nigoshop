@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/templates/template.xhtml">
+	
+	<ui:define name="content">
+	   error !
+	   
+	      
+<h:form>
+    <p:messages id="messages" showDetail="true" autoUpdate="true" />
+    
+    <p:panelGrid columns="2" cellpadding="5">
+    	<p:outputLabel for="name" value="Isim: "/>
+    	<p:inputText id="name" value="#{basket.productId}" />
+    	
+        <p:commandButton value="Reset" type="reset" />
+        <p:commandButton value="Submit" action="#{basket.addToCart()}"/>
+    </p:panelGrid>
+    </h:form>
+
+
+<p:dataTable var="cart" value="#{basket.cart}" columnIndexVar="i" >
+    <p:column headerText="Id">
+        <p:outputLabel value="#{cart}" />
+    </p:column>
+</p:dataTable>
+	   
+	   
+	</ui:define>
+
+</ui:composition>
+</html>

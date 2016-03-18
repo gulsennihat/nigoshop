@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/templates/template.xhtml">
+
+ <ui:define name="content">
+ 
+ 
+ <h:form>
+    <p:messages id="messages" showDetail="true" autoUpdate="true" />
+    
+    <p:panelGrid columns="2" cellpadding="5">
+    	<p:outputLabel for="name" value="Isim: "/>
+    	<p:inputText id="name" value="#{userRegBean.name}" />
+    	
+    	<p:outputLabel for="surname" value="Soyisim: "/>
+    	<p:inputText id="surname" value="#{userRegBean.surname}" />
+    	   	
+    	<p:outputLabel for="email" value="E-mail:  "/>
+    	<p:inputText id="email" value="#{userRegBean.email}" />
+   
+   		<p:outputLabel for="telNumber" value="Telefon:" />
+        <p:inputMask id="telNumber" value="#{userRegBean.telNumber}" mask="9(999) 999-99-99"/>
+        
+        <h:outputText value="Parola: " />
+        <p:password id="pwd1" value="#{userRegBean.password}" match="pwd2" label="Password 1" required="true" 
+        feedback="true"
+                    promptLabel="Lütfen şifre giriniz" weakLabel="Zayıf"
+                    goodLabel="Orta seviye" strongLabel="Güçlü" />
+        <h:outputText value="Parolayi tekrar yaziniz: " />
+        <p:password id="pwd2" value="#{userRegBean.password}" label="Password 2" required="true" 
+        feedback="true"
+                    promptLabel="Lütfen şifre giriniz" weakLabel="Zayıf"
+                    goodLabel="Orta seviye" strongLabel="Güçlü" />            
+        
+        
+    <p:messages showDetail="true"/>
+    <p:captcha label="Captcha" language="turkish" />
+
+ 
+        <p:commandButton value="Temizle" type="reset" />
+        <p:commandButton value="Uye Ol" action="#{userRegBean.save()}"  actionListener="#{userRegBean.submit()}"/>
+    </p:panelGrid>
+    </h:form>
+
+     </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/templates/template.xhtml">
+	<ui:param name="urunId" value="#{pdBean.getUrunId}" />
+	
+	<ui:define name="content">
+	
+
+	<center>
+	
+	    <h:dataTable value="#{pdBean.dbPdDetail()}" var="yaz" border="0" width="900">
+	    <h:column>   
+	        <p:panel id="basic" header="#{yaz.getUrunAdi()}" footer=">> #{yaz.getKategori()}" style="margin-bottom:20px">
+            <p:graphicImage value="#{yaz.getImg()}" width="90"/> 
+            <h:panelGrid columns="2" cellpadding="10">
+           
+            <h:outputText value="Ürün Kodu: " />
+            <h:outputText value="#{yaz.getUrunKodu()}" />
+            
+            <h:outputText value="Ürün Adı: " />
+            <h:outputText value="#{yaz.getUrunAdi()}" />
+            
+            <h:outputText value="Fiyat: " />
+            <h:outputText value="#{yaz.getSatisFiyati()} TL" />   
+          <h:form>
+                  <p:commandLink action="#{basket.addToCart()}" value="Sepete Ekle#{yaz.getId()}">
+                    <f:setPropertyActionListener value="#{yaz.getId()}" target="#{basket.productId}" />
+             </p:commandLink>
+             </h:form>   
+            </h:panelGrid>
+            </p:panel>
+ 
+          
+            <p:tabView>
+        <p:tab title="Ürün Açıklaması">
+            <h:panelGrid columns="2" cellpadding="10">
+                <h:outputText
+                    value="#{yaz.getDetay()}" escape="false"/>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Ürün Yorumları">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+                <h:outputText value="Francis Ford Coppola's legendary..." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Ödeme Koşulları">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                <h:outputText value="After a break of more than 15 years..." />
+            </h:panelGrid>
+        </p:tab>
+    </p:tabView>   
+	    </h:column>
+        </h:dataTable>
+
+        </center>
+	</ui:define>
+
+</ui:composition>
+</html>

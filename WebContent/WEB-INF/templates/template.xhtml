@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <title><ui:insert name="title">Nigo Software</ui:insert></title>
+      <style type="text/css">
+        .ui-widget,.ui-widget .ui-widget {
+            font-size: 90% !important;
+        }
+    </style>
+</h:head>
+
+<h:body>
+
+
+
+<div id="header">
+    <ui:insert name="header">
+    <c:set var="isonline" value="#{loginBean.useronline}"/>
+    <center><h:form>
+    <p:breadCrumb>
+    	<p:menuitem value="Anasayfa" outcome="index"/>
+    	<p:menuitem value="Ürünler" outcome="products"/>
+    	<c:choose>
+         <c:when test="#{isonline == false}">
+    	<p:menuitem value="Üye Ol" outcome="register"/>
+    	<p:menuitem value="Üye Girişi" outcome="login"/>
+    	</c:when>
+        <c:otherwise>
+    	<p:menuitem value="Çıkış" action="#{loginBean.logout}"/>
+    	  </c:otherwise>
+            </c:choose>
+    	
+    </p:breadCrumb>
+    </h:form>
+  </center>  
+
+    </ui:insert>
+</div>
+
+<h:form style="text-align: right">
+       <p:commandLink action="cart" >
+        <h:outputText value="Sepetinizde " />
+        <h:outputText id="output" value="#{basket.cartSize()}" />
+        <h:outputText value=" adet urun bulunmaktadir " />
+		</p:commandLink>
+</h:form>
+
+<div id="content">
+  <ui:insert name="content">
+    	Content area.  See comments below this line in the source.
+    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+	  	<!-- <div> -->
+    	<!-- <ui:include src="content.xhtml"/> -->  
+    	<!-- </div> -->
+  </ui:insert>
+</div>
+
+<div id="footer">
+  <ui:insert name="footer">
+     <p:separator />
+    	<center>Her Hakki Saklıdır. Nihat GÜLŞEN 2015</center>
+    	<!--  include your header file or uncomment the include below and create footer.xhtml in this directory -->
+		<!--<ui:include src="footer.xhtml"/>  -->
+  </ui:insert>
+</div>
+
+</h:body>
+
+</html>

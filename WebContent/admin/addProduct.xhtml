@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/admin/templ/templ.html">
+
+	<ui:define name="content">
+	   Urun ekle
+
+	    <h:form>
+	      <p:panelGrid columns="2" cellpadding="5">
+	    	
+	    	<p:outputLabel for="urunAdi" value="urun adi "/>
+	    	<p:inputText id="urunAdi" value="#{pdBean.urunAdi}" size="80" />
+	    	
+	    	<p:outputLabel for="satisFiyati" value="fiyat "/>
+	    	<p:inputText id="satisFiyati" value="#{pdBean.satisFiyati}" />
+	    	
+	    	<p:outputLabel for="kategori" value="kategori "/>
+	    	<p:inputText id="kategori" value="#{pdBean.kategori}" />
+	    	
+	    	<p:outputLabel for="img" value="img "/>
+	    	<p:inputText id="img" value="#{pdBean.img}" />
+	    	
+	    	<p:outputLabel for="detay" value="detay: "/>
+	    	<p:editor id="detay" widgetVar="editorWidget" value="#{pdBean.detay}" width="600" />
+	    	
+	        <p:commandButton value="Temizle" type="reset" />
+            <p:commandButton value="Kaydet" action="#{pdBean.save()}" /> 
+            
+            
+	      </p:panelGrid>
+	    </h:form>
+	  
+	</ui:define>
+
+</ui:composition>
+</html>
